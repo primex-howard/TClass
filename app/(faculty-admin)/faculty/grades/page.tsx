@@ -367,5 +367,6 @@ export default function FacultyGradesPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+    </div>
   );
 }

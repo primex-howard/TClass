@@ -1209,7 +1209,7 @@ export default function FacultyDashboard() {
             </Card>
           </div>
         </div>
-      {/* Edit Class Dialog -->
+      {/* Edit Class Dialog */}
       <Dialog open={editClassDialogOpen} onOpenChange={setEditClassDialogOpen}>
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
