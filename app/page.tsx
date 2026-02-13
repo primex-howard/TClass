@@ -2,6 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { 
@@ -23,15 +28,60 @@ import {
   HardHat,
   Laptop,
   ChefHat,
-  Wrench
+  Wrench,
+  FileText,
+  Loader2
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import { enrollmentsApi, programsApi, Program, EnrollmentData } from "@/lib/api";
+
+interface DocRequirements {
+  educational?: {
+    highSchool?: string[];
+    als?: string[];
+    college?: string[];
+  };
+  general: string[];
+  special?: string[];
+}
+
+interface Program {
+  id: number;
+  title: string;
+  category: string;
+  icon: React.ElementType;
+  description: string;
+  duration: string;
+  slots: string;
+  price?: string;
+  scholarship?: string;
+  requirements?: string[];
+  qualifications?: string[];
+  docRequirements?: DocRequirements;
+  image: string;
+  instructor?: string;
+  schedule?: string;
+  room?: string;
+}
 
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("all");
+  const [enrollDialogOpen, setEnrollDialogOpen] = useState(false);
+  const [corDialogOpen, setCorDialogOpen] = useState(false);
+  const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
+  const [enrollmentDataState, setEnrollmentDataState] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    birthDate: '',
+    education: '',
+    address: ''
+  });
+  const [requirementsAgreed, setRequirementsAgreed] = useState(false);
 
   const programs = [
     {
@@ -39,61 +89,221 @@ export default function LandingPage() {
       title: "Rigid Highway Dump Truck NCII",
       category: "heavy-equipment",
       icon: Truck,
-      description: "School Based Training - Heavy Equipment Operation under TCLASS scholarship",
+      description: "School Based Training - Heavy Equipment Operation under TCLASS scholarship with minimal fee of PISO per hour",
       duration: "3 months",
       slots: "Limited slots available",
-      image: "/programs/dump-truck.jpg"
+      scholarship: "TCLASS Scholarship",
+      image: "/programs/dump-truck.jpg",
+      instructor: "Engr. Roberto Dela Cruz",
+      schedule: "Mon/Wed/Fri 8:00 AM - 12:00 PM",
+      room: "Heavy Equipment Yard A",
+      qualifications: [
+        "At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate",
+        "18 years old and above",
+        "Physically and Mentally Fit",
+        "Can comply to all requirements needed"
+      ],
+      docRequirements: {
+        educational: {
+          highSchool: ["Photocopy of Diploma", "Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"],
+          als: ["ALS Certificate"],
+          college: ["Photocopy of Diploma", "Photocopy of Certified True Copy of Transcript of Records", "National Certificates (If applicable)"]
+        },
+        general: [
+          "PSA Birth Certificate (Photocopy)",
+          "PSA Marriage Certificate (For female married students)",
+          "Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1",
+          "Original Brgy. Indigency",
+          "Original Medical Certificate",
+          "Voter's ID / Certification or any government issued ID with address (Photocopy)",
+          "Long envelope with clear plastic envelope"
+        ],
+        special: [
+          "Driver's license Original and Photocopy",
+          "Must bring the original documents for verification",
+          "Must be capable of operating a 4 wheeled vehicle"
+        ]
+      }
     },
     {
       id: 2,
       title: "Transit Mixer NCII",
       category: "heavy-equipment",
       icon: Truck,
-      description: "Professional training for concrete mixer truck operation with minimal fee",
+      description: "School Based Training - Heavy Equipment Operation under TCLASS scholarship with minimal fee of PISO per hour",
       duration: "3 months",
       slots: "Now accepting applicants",
-      image: "/programs/transit-mixer.jpg"
+      scholarship: "TCLASS Scholarship",
+      image: "/programs/transit-mixer.jpg",
+      instructor: "Engr. Maria Santos",
+      schedule: "Tue/Thu 8:00 AM - 4:00 PM",
+      room: "Heavy Equipment Yard B",
+      qualifications: [
+        "At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate",
+        "18 years old and above",
+        "Physically and Mentally Fit",
+        "Can comply to all requirements needed"
+      ],
+      docRequirements: {
+        educational: {
+          highSchool: ["Photocopy of Diploma", "Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"],
+          als: ["ALS Certificate"],
+          college: ["Photocopy of Diploma", "Photocopy of Certified True Copy of Transcript of Records", "National Certificates (If applicable)"]
+        },
+        general: [
+          "PSA Birth Certificate (Photocopy)",
+          "PSA Marriage Certificate (For female married students)",
+          "Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1",
+          "Original Brgy. Indigency",
+          "Original Medical Certificate",
+          "Voter's ID / Certification or any government issued ID with address (Photocopy)",
+          "Long envelope with clear plastic envelope"
+        ],
+        special: [
+          "Driver's license Original and Photocopy",
+          "Must bring the original documents for verification",
+          "Must be capable of operating a 4 wheeled vehicle"
+        ]
+      }
     },
     {
       id: 3,
       title: "Forklift NCII",
       category: "heavy-equipment",
       icon: HardHat,
-      description: "Comprehensive forklift operation training under maYAP Scholarship",
+      description: "School Based Training - Heavy Equipment Operator under maYAP Scholarship with minimal fee of PISO per hour",
       duration: "2 months",
       slots: "Open for enrollment",
-      image: "/programs/forklift.jpg"
+      scholarship: "maYAP Scholarship",
+      image: "/programs/forklift.jpg",
+      instructor: "Sir. Juan Reyes",
+      schedule: "Mon-Fri 1:00 PM - 5:00 PM",
+      room: "Workshop Room 3",
+      qualifications: [
+        "At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate",
+        "18 years old and above",
+        "Physically and Mentally Fit",
+        "Can comply to all requirements needed"
+      ],
+      docRequirements: {
+        educational: {
+          highSchool: ["Photocopy of Diploma", "Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"],
+          als: ["ALS Certificate"],
+          college: ["Photocopy of Diploma", "Photocopy of Certified True Copy of Transcript of Records", "National Certificates (If applicable)"]
+        },
+        general: [
+          "PSA Birth Certificate (Photocopy)",
+          "PSA Marriage Certificate (For female married students)",
+          "Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1",
+          "Original Brgy. Indigency",
+          "Original Medical Certificate",
+          "Voter's ID / Certification or any government issued ID with address (Photocopy)",
+          "Long envelope with clear plastic envelope"
+        ],
+        special: [
+          "Driver's license Original and Photocopy",
+          "Must bring the original documents for verification"
+        ]
+      }
     },
     {
       id: 4,
       title: "3-Year Diploma in ICT",
       category: "ict",
       icon: Laptop,
-      description: "Information and Communication Technology diploma program",
+      description: "3 Year Diploma in Information and Communication Technology",
       duration: "3 years",
       slots: "5 SLOTS LEFT!",
-      requirements: ["18 years old and above", "SHS/ALS Graduate", "Must meet interview requirements"],
-      image: "/programs/ict.jpg"
+      scholarship: "TCLASS Program",
+      image: "/programs/ict.jpg",
+      instructor: "Prof. Ana Garcia",
+      schedule: "Mon-Fri 8:00 AM - 5:00 PM",
+      room: "ICT Laboratory 2",
+      qualifications: [
+        "18 YEARS OLD AND ABOVE",
+        "GRADUATE OF SENIOR HIGH SCHOOL / ALS / OLD CURRICULUM",
+        "MUST MEET THE INTERVIEW REQUIREMENTS"
+      ],
+      docRequirements: {
+        general: [
+          "Valid ID / Recent School ID",
+          "PSA Birth Certificate",
+          "SF9 / Report Card",
+          "Certificate of Good Moral Conduct"
+        ]
+      }
     },
     {
       id: 5,
       title: "Housekeeping NCII",
       category: "services",
       icon: Award,
-      description: "Professional housekeeping training under maYAP Scholarship",
+      description: "School Based Training under maYAP Scholarship with minimal fee of PISO per hour",
       duration: "2 months",
       slots: "Now open",
-      image: "/programs/housekeeping.jpg"
+      scholarship: "maYAP Scholarship",
+      image: "/programs/housekeeping.jpg",
+      instructor: "Ms. Lisa Wong",
+      schedule: "Mon/Wed 8:00 AM - 4:00 PM",
+      room: "Training Room 5",
+      qualifications: [
+        "At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate",
+        "18 years old and above",
+        "Physically and Mentally Fit",
+        "Can comply to all requirements needed"
+      ],
+      docRequirements: {
+        educational: {
+          highSchool: ["Photocopy of Diploma", "Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"],
+          als: ["ALS Certificate"],
+          college: ["Photocopy of Diploma", "Photocopy of Certified True Copy of Transcript of Records", "National Certificates (If applicable)"]
+        },
+        general: [
+          "PSA Birth Certificate (Photocopy)",
+          "PSA Marriage Certificate (For female married students)",
+          "Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1",
+          "Original Brgy. Indigency",
+          "Original Medical Certificate",
+          "Voter's ID / Certification or any government issued ID with address (Photocopy)",
+          "Long envelope with clear plastic envelope"
+        ]
+      }
     },
     {
       id: 6,
       title: "Health Care Services NCII",
       category: "services",
       icon: Users,
-      description: "Comprehensive health care assistant training program",
+      description: "School Based Training under maYAP Scholarship with minimal fee of PISO per hour",
       duration: "6 months",
       slots: "Limited slots",
-      image: "/programs/healthcare.jpg"
+      scholarship: "maYAP Scholarship",
+      image: "/programs/healthcare.jpg",
+      instructor: "Dr. Pedro Martinez",
+      schedule: "Tue/Thu/Fri 8:00 AM - 4:00 PM",
+      room: "Medical Training Lab",
+      qualifications: [
+        "At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate",
+        "18 years old and above",
+        "Physically and Mentally Fit",
+        "Can comply to all requirements needed"
+      ],
+      docRequirements: {
+        educational: {
+          highSchool: ["Photocopy of Diploma", "Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"],
+          als: ["ALS Certificate"],
+          college: ["Photocopy of Diploma", "Photocopy of Certified True Copy of Transcript of Records", "National Certificates (If applicable)"]
+        },
+        general: [
+          "PSA Birth Certificate (Photocopy)",
+          "PSA Marriage Certificate (For female married students)",
+          "Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1",
+          "Original Brgy. Indigency",
+          "Original Medical Certificate",
+          "Voter's ID / Certification or any government issued ID with address (Photocopy)",
+          "Long envelope with clear plastic envelope"
+        ]
+      }
     }
   ];
 
@@ -127,6 +337,104 @@ export default function LandingPage() {
   const filteredPrograms = activeTab === "all" 
     ? programs 
     : programs.filter(p => p.category === activeTab);
+
+  const openEnrollmentDialog = (program: Program) => {
+    setSelectedProgram(program);
+    setEnrollDialogOpen(true);
+  };
+
+  const [isEnrolling, setIsEnrolling] = useState(false);
+  const [corNumber, setCorNumber] = useState("");
+
+  // Fetch programs from API on mount
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        const response = await programsApi.getAll({ status: 'active' });
+        // Transform API programs to match the local format
+        const apiPrograms = response.data.map((p: Program) => ({
+          id: p.id,
+          title: p.title,
+          category: p.category,
+          icon: getCategoryIcon(p.category),
+          description: p.description,
+          duration: p.duration,
+          slots: p.slots,
+          price: p.price,
+          scholarship: p.scholarship,
+          requirements: p.qualifications || p.requirements,
+          qualifications: p.qualifications,
+          docRequirements: p.doc_requirements,
+          image: p.image || '/programs/default.jpg',
+          instructor: 'TBD',
+          schedule: 'TBD',
+          room: 'TBD',
+        }));
+        // Update programs if API returns data
+        if (apiPrograms.length > 0) {
+          // Merge or replace - here we keep local ones as fallback
+          console.log('Programs loaded from API:', apiPrograms);
+        }
+      } catch (error) {
+        console.log('Using local programs data');
+      }
+    };
+    fetchPrograms();
+  }, []);
+
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case 'heavy-equipment': return Truck;
+      case 'ict': return Laptop;
+      case 'services': return Award;
+      default: return BookOpen;
+    }
+  };
+
+  const handleEnroll = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!selectedProgram) return;
+    
+    if (!requirementsAgreed) {
+      toast.error("Please agree to the enrollment requirements");
+      return;
+    }
+    
+    setIsEnrolling(true);
+    
+    try {
+      const enrollmentData: EnrollmentData = {
+        program_id: selectedProgram.id,
+        first_name: enrollmentDataState.firstName,
+        last_name: enrollmentDataState.lastName,
+        email: enrollmentDataState.email,
+        phone: enrollmentDataState.phone,
+        birth_date: enrollmentDataState.birthDate,
+        education_level: enrollmentDataState.education,
+        address: enrollmentDataState.address,
+      };
+      
+      const response = await enrollmentsApi.enroll(enrollmentData);
+      
+      setCorNumber(response.cor_number);
+      setEnrollDialogOpen(false);
+      setCorDialogOpen(true);
+      toast.success("Enrollment successful! Generating Certificate of Registration...");
+    } catch (error: any) {
+      toast.error(error.message || "Enrollment failed. Please try again.");
+    } finally {
+      setIsEnrolling(false);
+    }
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setEnrollmentDataState(prev => ({ ...prev, [field]: value }));
+  };
+
+  const generateCORNumber = () => {
+    return `COR-${new Date().getFullYear()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+  };
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -236,9 +544,9 @@ export default function LandingPage() {
               Under the Provincial Government of Tarlac.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-yellow-500 text-blue-900 hover:bg-yellow-400 font-semibold shadow-lg">
-                <Award className="h-5 w-5 mr-2" />
-                Apply for Scholarship
+              <Button size="lg" className="bg-yellow-500 text-blue-900 hover:bg-yellow-400 font-semibold shadow-lg" onClick={() => openEnrollmentDialog(programs[0])}>
+                <GraduationCap className="h-5 w-5 mr-2" />
+                Enroll Now
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20 bg-white/10 backdrop-blur-sm">
                 <BookOpen className="h-5 w-5 mr-2" />
@@ -317,15 +625,14 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-slate-200">
-                <div className="w-full h-full bg-gradient-to-br from-blue-100 to-teal-100 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-32 h-32 mx-auto mb-4 bg-teal-500 rounded-full flex items-center justify-center">
-                      <GraduationCap className="h-16 w-16 text-white" />
-                    </div>
-                    <p className="text-slate-600 font-medium">Building Futures Since 2007</p>
-                  </div>
-                </div>
+              <div className="aspect-square rounded-2xl overflow-hidden bg-slate-200 shadow-xl">
+                <Image
+                  src="/tclass.jpg"
+                  alt="TCLASS Training Center"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg">
                 <p className="text-3xl font-bold text-blue-600">17+</p>
@@ -395,11 +702,11 @@ export default function LandingPage() {
                       NCII Certified
                     </span>
                   </div>
-                  {program.requirements && (
+                  {(program as Program).requirements && (
                     <div className="mb-4">
                       <p className="text-xs font-medium text-slate-500 mb-2">Requirements:</p>
                       <ul className="text-xs text-slate-600 space-y-1">
-                        {program.requirements.map((req, idx) => (
+                        {(program as Program).requirements?.map((req, idx) => (
                           <li key={idx} className="flex items-start gap-1">
                             <ChevronRight className="h-3 w-3 text-blue-500 mt-0.5" />
                             {req}
@@ -408,8 +715,8 @@ export default function LandingPage() {
                       </ul>
                     </div>
                   )}
-                  <Button className="w-full" onClick={() => toast.success(`Opening application for ${program.title}`)}>
-                    Apply Now
+                  <Button className="w-full" onClick={() => openEnrollmentDialog(program)}>
+                    Enroll Now
                   </Button>
                 </CardContent>
               </Card>
@@ -624,6 +931,429 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+
+      {/* Enrollment Form Dialog */}
+      <Dialog open={enrollDialogOpen} onOpenChange={setEnrollDialogOpen}>
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <GraduationCap className="h-6 w-6 text-blue-600" />
+              Enroll Now
+            </DialogTitle>
+            <DialogDescription>
+              Fill in your details to enroll in {selectedProgram?.title}
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleEnroll} className="space-y-4 pt-4">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">First Name</label>
+                <Input 
+                  value={enrollmentDataState.firstName}
+                  onChange={(e) => handleInputChange('firstName', e.target.value)}
+                  placeholder="Juan"
+                  required
+                  disabled={isEnrolling}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Last Name</label>
+                <Input 
+                  value={enrollmentDataState.lastName}
+                  onChange={(e) => handleInputChange('lastName', e.target.value)}
+                  placeholder="Dela Cruz"
+                  required
+                  disabled={isEnrolling}
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Email Address</label>
+              <Input 
+                type="email"
+                value={enrollmentDataState.email}
+                onChange={(e) => handleInputChange('email', e.target.value)}
+                placeholder="juan@example.com"
+                required
+                disabled={isEnrolling}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Phone Number</label>
+              <Input 
+                type="tel"
+                value={enrollmentDataState.phone}
+                onChange={(e) => handleInputChange('phone', e.target.value)}
+                placeholder="0917XXXXXXX"
+                required
+                disabled={isEnrolling}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Date of Birth</label>
+              <Input 
+                type="date"
+                value={enrollmentDataState.birthDate}
+                onChange={(e) => handleInputChange('birthDate', e.target.value)}
+                required
+                disabled={isEnrolling}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Highest Educational Attainment</label>
+              <select 
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+                value={enrollmentDataState.education}
+                onChange={(e) => handleInputChange('education', e.target.value)}
+                required
+                disabled={isEnrolling}
+              >
+                <option value="">Select...</option>
+                <option value="high-school">High School Graduate</option>
+                <option value="college-undergrad">College Undergraduate</option>
+                <option value="college-graduate">College Graduate</option>
+                <option value="tesda-nc">TESDA NC Holder</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Complete Address</label>
+              <Textarea 
+                value={enrollmentDataState.address}
+                onChange={(e) => handleInputChange('address', e.target.value)}
+                placeholder="Street, Barangay, Municipality, Province"
+                required
+                disabled={isEnrolling}
+              />
+            </div>
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <h4 className="font-semibold text-blue-900 mb-2">Program Details</h4>
+              <p className="text-sm text-blue-800">{selectedProgram?.title}</p>
+              <p className="text-sm text-blue-600">Duration: {selectedProgram?.duration}</p>
+              <p className="text-sm text-blue-600">Tuition: {selectedProgram?.price}</p>
+            </div>
+
+            {/* Enrollment Requirements - Course Specific */}
+            <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg max-h-96 overflow-y-auto">
+              <h4 className="font-semibold text-amber-900 mb-3 flex items-center gap-2">
+                <GraduationCap className="h-5 w-5" />
+                Enrollment Requirements
+              </h4>
+              
+              {/* Scholarship Info */}
+              {selectedProgram?.scholarship && (
+                <div className="mb-3 p-2 bg-blue-100 rounded">
+                  <p className="text-sm font-semibold text-blue-800">
+                    {selectedProgram.scholarship}
+                  </p>
+                </div>
+              )}
+
+              {/* Qualifications */}
+              {selectedProgram?.qualifications && (
+                <div className="mb-4">
+                  <p className="text-sm font-semibold text-amber-800 mb-2">QUALIFICATION:</p>
+                  <ol className="space-y-1 text-sm text-amber-800 list-decimal list-inside">
+                    {selectedProgram.qualifications.map((qual, idx) => (
+                      <li key={idx}>{qual}</li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+
+              {/* Documentary Requirements */}
+              {selectedProgram?.docRequirements && (
+                <div className="mb-4">
+                  <p className="text-sm font-semibold text-amber-800 mb-2">DOCUMENTARY REQUIREMENTS:</p>
+                  <p className="text-xs text-amber-600 mb-2">Original and photocopy of the following:</p>
+                  
+                  {/* Educational Requirements */}
+                  {selectedProgram.docRequirements.educational && (
+                    <div className="mb-3">
+                      <p className="text-xs font-semibold text-amber-700 mb-1">1.) Educational Credentials:</p>
+                      {selectedProgram.docRequirements.educational.highSchool && (
+                        <div className="ml-3 mb-1">
+                          <p className="text-xs text-amber-700">A.) Highschool Graduate:</p>
+                          <ul className="ml-3 text-xs text-amber-600 list-disc list-inside">
+                            {selectedProgram.docRequirements.educational.highSchool.map((item, idx) => (
+                              <li key={idx}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {selectedProgram.docRequirements.educational.als && (
+                        <div className="ml-3 mb-1">
+                          <p className="text-xs text-amber-700">B.) ALS Graduate:</p>
+                          <ul className="ml-3 text-xs text-amber-600 list-disc list-inside">
+                            {selectedProgram.docRequirements.educational.als.map((item, idx) => (
+                              <li key={idx}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {selectedProgram.docRequirements.educational.college && (
+                        <div className="ml-3 mb-1">
+                          <p className="text-xs text-amber-700">C.) College Level / Graduate:</p>
+                          <ul className="ml-3 text-xs text-amber-600 list-disc list-inside">
+                            {selectedProgram.docRequirements.educational.college.map((item, idx) => (
+                              <li key={idx}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* General Requirements */}
+                  {selectedProgram.docRequirements.general && (
+                    <div className="mb-3">
+                      {selectedProgram.docRequirements.educational && (
+                        <p className="text-xs font-semibold text-amber-700 mb-1">
+                          {selectedProgram.docRequirements.educational ? "2.)" : "1.)"} General Requirements:
+                        </p>
+                      )}
+                      <ul className="ml-3 text-xs text-amber-600 list-disc list-inside">
+                        {selectedProgram.docRequirements.general.map((item, idx) => (
+                          <li key={idx}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Special Requirements (for driving/heavy equipment) */}
+                  {selectedProgram.docRequirements.special && (
+                    <div className="mb-3">
+                      <p className="text-xs font-semibold text-amber-700 mb-1">
+                        FOR DRIVING AND HEAVY EQUIPMENT COURSES:
+                      </p>
+                      <ul className="ml-3 text-xs text-amber-600 list-disc list-inside">
+                        {selectedProgram.docRequirements.special.map((item, idx) => (
+                          <li key={idx}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Legacy requirements support */}
+              {selectedProgram?.requirements && !selectedProgram?.docRequirements && (
+                <ul className="space-y-1 text-sm text-amber-800 list-disc list-inside">
+                  {selectedProgram.requirements.map((req, idx) => (
+                    <li key={idx}>{req}</li>
+                  ))}
+                </ul>
+              )}
+
+              <div className="mt-4 pt-3 border-t border-amber-200">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={requirementsAgreed}
+                    onChange={(e) => setRequirementsAgreed(e.target.checked)}
+                    className="mt-1 h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                    required
+                  />
+                  <span className="text-sm text-amber-900">
+                    I confirm that I have read and understood the enrollment requirements, and I agree to submit all required documents upon enrollment.
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={() => setEnrollDialogOpen(false)} disabled={isEnrolling}>
+                Cancel
+              </Button>
+              <Button type="submit" className="bg-blue-600 hover:bg-blue-700" disabled={isEnrolling || !requirementsAgreed}>
+                {isEnrolling ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Processing...
+                  </>
+                ) : (
+                  'Complete Enrollment'
+                )}
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Certificate of Registration Dialog */}
+      <Dialog open={corDialogOpen} onOpenChange={setCorDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-center">
+              <div className="flex justify-center mb-2">
+                <div className="relative w-16 h-16">
+                  <Image
+                    src="/tclass-logo.jpg"
+                    alt="TCLASS Logo"
+                    fill
+                    className="object-contain rounded-full"
+                  />
+                </div>
+              </div>
+              <h2 className="text-xl font-bold text-blue-900">CERTIFICATE OF REGISTRATION</h2>
+              <p className="text-sm text-slate-600">PGT - Tarlac Center for Learning And Skills Success</p>
+            </DialogTitle>
+          </DialogHeader>
+          <div className="border-t-4 border-blue-900 pt-6 space-y-6">
+            {/* COR Number and Date */}
+            <div className="flex justify-between text-sm">
+              <span><strong>COR No:</strong> {corNumber || generateCORNumber()}</span>
+              <span><strong>Date:</strong> {new Date().toLocaleDateString('en-PH', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            </div>
+
+            {/* Student Information */}
+            <div className="bg-slate-50 p-4 rounded-lg">
+              <h3 className="font-bold text-slate-900 mb-3 border-b pb-2">STUDENT INFORMATION</h3>
+              <div className="grid sm:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span className="text-slate-500">Student Name:</span>
+                  <p className="font-semibold">{enrollmentDataState.firstName} {enrollmentDataState.lastName}</p>
+                </div>
+                <div>
+                  <span className="text-slate-500">Email:</span>
+                  <p className="font-semibold">{enrollmentDataState.email}</p>
+                </div>
+                <div>
+                  <span className="text-slate-500">Phone:</span>
+                  <p className="font-semibold">{enrollmentDataState.phone}</p>
+                </div>
+                <div>
+                  <span className="text-slate-500">Date of Birth:</span>
+                  <p className="font-semibold">{enrollmentDataState.birthDate ? new Date(enrollmentDataState.birthDate).toLocaleDateString('en-PH') : ''}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Class Schedule */}
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <h3 className="font-bold text-blue-900 mb-3 border-b border-blue-200 pb-2">CLASS SCHEDULE</h3>
+              <div className="space-y-3">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <span className="text-blue-600 text-sm">Program:</span>
+                    <p className="font-semibold text-slate-900">{selectedProgram?.title}</p>
+                  </div>
+                  <div>
+                    <span className="text-blue-600 text-sm">Duration:</span>
+                    <p className="font-semibold text-slate-900">{selectedProgram?.duration}</p>
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <span className="text-blue-600 text-sm">Schedule:</span>
+                    <p className="font-semibold text-slate-900">{selectedProgram?.schedule}</p>
+                  </div>
+                  <div>
+                    <span className="text-blue-600 text-sm">Room/Location:</span>
+                    <p className="font-semibold text-slate-900">{selectedProgram?.room}</p>
+                  </div>
+                </div>
+                <div>
+                  <span className="text-blue-600 text-sm">Instructor/Professor:</span>
+                  <p className="font-semibold text-slate-900">{selectedProgram?.instructor}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Important Notes */}
+            <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+              <h4 className="font-semibold text-amber-800 mb-2">Important Reminders:</h4>
+              <ul className="text-sm text-amber-700 space-y-1 list-disc list-inside">
+                <li>Please bring a printed copy of this COR on your first day of class</li>
+                <li>Report to the TCLASS office for your ID processing</li>
+                <li>Submit required documents on or before first day of class:</li>
+              </ul>
+              
+              {/* Course-Specific Requirements */}
+              {selectedProgram?.docRequirements && (
+                <div className="mt-3 ml-4 text-sm text-amber-800 bg-amber-100 p-3 rounded max-h-64 overflow-y-auto">
+                  <p className="font-semibold mb-2">Documentary Requirements:</p>
+                  
+                  {/* Educational */}
+                  {selectedProgram.docRequirements.educational && (
+                    <div className="mb-2">
+                      <p className="text-xs font-semibold text-amber-700">Educational Credentials:</p>
+                      <ul className="ml-3 text-xs space-y-0.5 list-disc list-inside">
+                        {selectedProgram.docRequirements.educational.highSchool?.map((item, idx) => (
+                          <li key={`hs-${idx}`}>{item}</li>
+                        ))}
+                        {selectedProgram.docRequirements.educational.als?.map((item, idx) => (
+                          <li key={`als-${idx}`}>{item}</li>
+                        ))}
+                        {selectedProgram.docRequirements.educational.college?.map((item, idx) => (
+                          <li key={`col-${idx}`}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {/* General */}
+                  <div className="mb-2">
+                    <p className="text-xs font-semibold text-amber-700">General Requirements:</p>
+                    <ul className="ml-3 text-xs space-y-0.5 list-disc list-inside">
+                      {selectedProgram.docRequirements.general.map((item, idx) => (
+                        <li key={`gen-${idx}`}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  {/* Special (Driving/Heavy Equipment) */}
+                  {selectedProgram.docRequirements.special && (
+                    <div className="mb-2">
+                      <p className="text-xs font-semibold text-amber-700">For Driving/Heavy Equipment Courses:</p>
+                      <ul className="ml-3 text-xs space-y-0.5 list-disc list-inside">
+                        {selectedProgram.docRequirements.special.map((item, idx) => (
+                          <li key={`spec-${idx}`}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )}
+              
+              {/* Legacy requirements */}
+              {selectedProgram?.requirements && !selectedProgram?.docRequirements && (
+                <div className="mt-3 ml-4 text-sm text-amber-800 bg-amber-100 p-3 rounded">
+                  <p className="font-semibold mb-2">Initial Requirements:</p>
+                  <ul className="space-y-1 list-disc list-inside">
+                    {selectedProgram.requirements.map((req, idx) => (
+                      <li key={idx}>{req}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              <ul className="text-sm text-amber-700 space-y-1 list-disc list-inside mt-3">
+                <li>Must bring original documents for verification</li>
+                <li>Classes start on the scheduled date. Be on time!</li>
+              </ul>
+            </div>
+
+            {/* QR Code Placeholder */}
+            <div className="flex justify-center">
+              <div className="text-center">
+                <div className="w-24 h-24 bg-slate-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                  <div className="text-xs text-slate-500">QR Code</div>
+                </div>
+                <p className="text-xs text-slate-500">Scan to verify enrollment</p>
+              </div>
+            </div>
+          </div>
+          <DialogFooter className="flex justify-center gap-4">
+            <Button onClick={() => window.print()} variant="outline">
+              <FileText className="h-4 w-4 mr-2" />
+              Print COR
+            </Button>
+            <Button onClick={() => setCorDialogOpen(false)} className="bg-blue-600 hover:bg-blue-700">
+              Done
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -279,112 +279,7 @@ export default function AdminDashboard() {
   const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center gap-2">
-              <div className="bg-emerald-600 p-2 rounded-lg">
-                <School className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-xl font-bold text-slate-900">TClass</span>
-              <Badge className="hidden sm:inline-flex bg-emerald-100 text-emerald-700 hover:bg-emerald-100">Admin Portal</Badge>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-6">
-              <a href="#" className="text-sm font-medium text-emerald-600">Dashboard</a>
-              <button onClick={() => handleNavClick("Users")} className="text-sm font-medium text-slate-600 hover:text-slate-900">Users</button>
-              <button onClick={() => handleNavClick("Academics")} className="text-sm font-medium text-slate-600 hover:text-slate-900">Academics</button>
-              <button onClick={() => handleNavClick("Finance")} className="text-sm font-medium text-slate-600 hover:text-slate-900">Finance</button>
-              <button onClick={() => handleNavClick("Reports")} className="text-sm font-medium text-slate-600 hover:text-slate-900">Reports</button>
-              <button onClick={() => handleNavClick("Settings")} className="text-sm font-medium text-slate-600 hover:text-slate-900">Settings</button>
-            </nav>
-
-            {/* Right Section */}
-            <div className="flex items-center gap-4">
-              <div className="relative hidden sm:block">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <Input 
-                  placeholder="Search users..." 
-                  className="pl-9 w-64"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-              <div className="relative">
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className="relative"
-                  onClick={() => setShowNotifications(!showNotifications)}
-                >
-                  <Bell className="h-5 w-5" />
-                  {unreadCount > 0 && (
-                    <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
-                  )}
-                </Button>
-                
-                {/* Notifications Dropdown */}
-                {showNotifications && (
-                  <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-slate-200 z-50">
-                    <div className="p-4 border-b border-slate-200 flex justify-between items-center">
-                      <h3 className="font-semibold text-slate-900">Notifications</h3>
-                      <Button variant="ghost" size="sm" onClick={handleClearNotifications}>
-                        Clear all
-                      </Button>
-                    </div>
-                    <div className="max-h-64 overflow-y-auto">
-                      {notifications.length === 0 ? (
-                        <p className="p-4 text-center text-slate-500">No notifications</p>
-                      ) : (
-                        notifications.map((notif) => (
-                          <div key={notif.id} className={`p-3 border-b border-slate-100 hover:bg-slate-50 ${!notif.read ? 'bg-blue-50' : ''}`}>
-                            <p className="text-sm text-slate-700">{notif.message}</p>
-                            <p className="text-xs text-slate-500 mt-1">{notif.time}</p>
-                          </div>
-                        ))
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-              
-              <div className="hidden sm:flex items-center gap-3">
-                <Avatar>
-                  <AvatarFallback className="bg-emerald-100 text-emerald-700">AD</AvatarFallback>
-                </Avatar>
-                <div className="hidden lg:block">
-                  <p className="text-sm font-medium text-slate-900">Admin User</p>
-                  <p className="text-xs text-slate-500">Super Admin</p>
-                </div>
-              </div>
-              <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-200 bg-white">
-            <div className="px-4 py-3 space-y-1">
-              <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-emerald-600 bg-emerald-50">Dashboard</a>
-              <button onClick={() => { handleNavClick("Users"); setMobileMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">Users</button>
-              <button onClick={() => { handleNavClick("Academics"); setMobileMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">Academics</button>
-              <button onClick={() => { handleNavClick("Finance"); setMobileMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">Finance</button>
-              <button onClick={() => { handleNavClick("Reports"); setMobileMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">Reports</button>
-              <button onClick={() => { handleNavClick("Settings"); setMobileMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">Settings</button>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
         {/* Welcome Section */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-slate-900">Admin Dashboard</h1>
@@ -924,9 +819,7 @@ export default function AdminDashboard() {
             </Card>
           </div>
         </div>
-      </main>
-
-      {/* Edit User Dialog */}
+      {/* Edit User Dialog -->
       <Dialog open={editUserOpen} onOpenChange={setEditUserOpen}>
         <DialogContent>
           <DialogHeader>

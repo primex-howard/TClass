@@ -123,4 +123,59 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Mobile-friendly tap targets */
+  button, 
+  a,
+  input[type="checkbox"],
+  input[type="radio"] {
+    @apply touch-manipulation;
+  }
+  
+  /* Prevent text size adjustment on orientation change */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Prevent pull-to-refresh on mobile (optional) */
+  body {
+    overscroll-behavior-y: none;
+  }
+}
+
+@layer utilities {
+  /* Touch manipulation utility */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  /* Safe area utilities for notched phones */
+  .safe-area-inset-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  /* Prevent text selection on interactive elements */
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hardware acceleration for animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
 }

@@ -452,109 +452,7 @@ export default function FacultyDashboard() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center gap-2">
-              <div className="bg-indigo-600 p-2 rounded-lg">
-                <GraduationCap className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-xl font-bold text-slate-900">TClass</span>
-              <Badge className="hidden sm:inline-flex bg-indigo-100 text-indigo-700 hover:bg-indigo-100">Faculty Portal</Badge>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/faculty" className="text-sm font-medium text-indigo-600">Dashboard</Link>
-              <Link href="/faculty/classes" className="text-sm font-medium text-slate-600 hover:text-slate-900">My Classes</Link>
-              <Link href="/faculty/students" className="text-sm font-medium text-slate-600 hover:text-slate-900">Students</Link>
-              <Link href="/faculty/assignments" className="text-sm font-medium text-slate-600 hover:text-slate-900">Assignments</Link>
-              <Link href="/faculty/grades" className="text-sm font-medium text-slate-600 hover:text-slate-900">Grades</Link>
-            </nav>
-
-            {/* Right Section */}
-            <div className="flex items-center gap-4">
-              <form onSubmit={handleSearch} className="relative hidden sm:flex items-center gap-2">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                  <Input 
-                    placeholder="Search classes, submissions..." 
-                    className="pl-9 w-64"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-                
-                {/* Filter Button */}
-                <Popover open={filterOpen} onOpenChange={setFilterOpen}>
-                  <PopoverTrigger asChild>
-                    <Button type="button" variant="outline" size="icon">
-                      <Filter className="h-4 w-4" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-56" align="end">
-                    <div className="space-y-4">
-                      <div>
-                        <Label className="text-sm font-medium mb-2 block">Status Filter</Label>
-                        <Select value={statusFilter} onValueChange={setStatusFilter}>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Filter by status" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="all">All Classes</SelectItem>
-                            <SelectItem value="active">Active</SelectItem>
-                            <SelectItem value="inactive">Inactive</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <Button variant="outline" size="sm" className="w-full" onClick={clearFilters}>
-                        Clear Filters
-                      </Button>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-              </form>
-              
-              <Button variant="ghost" size="icon" className="relative" onClick={handleNotificationClick}>
-                <Bell className="h-5 w-5" />
-                {notificationCount > 0 && (
-                  <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
-                )}
-              </Button>
-              <div className="hidden sm:flex items-center gap-3">
-                <Avatar>
-                  <AvatarFallback className="bg-indigo-100 text-indigo-700">PS</AvatarFallback>
-                </Avatar>
-                <div className="hidden lg:block">
-                  <p className="text-sm font-medium text-slate-900">Prof. Santos</p>
-                  <p className="text-xs text-slate-500">Mathematics Dept</p>
-                </div>
-              </div>
-              <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-200 bg-white">
-            <div className="px-4 py-3 space-y-1">
-              <Link href="/faculty" className="block px-3 py-2 rounded-md text-base font-medium text-indigo-600 bg-indigo-50">Dashboard</Link>
-              <Link href="/faculty/classes" className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">My Classes</Link>
-              <Link href="/faculty/students" className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">Students</Link>
-              <Link href="/faculty/assignments" className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">Assignments</Link>
-              <Link href="/faculty/grades" className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">Grades</Link>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="p-4 sm:p-6 lg:p-8">
         {/* Welcome Section */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-slate-900">Welcome back, Prof. Santos!</h1>
@@ -1268,9 +1166,7 @@ export default function FacultyDashboard() {
             </Card>
           </div>
         </div>
-      </main>
-
-      {/* Edit Class Dialog */}
+      {/* Edit Class Dialog -->
       <Dialog open={editClassDialogOpen} onOpenChange={setEditClassDialogOpen}>
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>

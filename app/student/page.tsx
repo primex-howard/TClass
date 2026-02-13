@@ -4,13 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { BookOpen, Calendar, CheckCircle, Clock, FileText, GraduationCap, MessageSquare, Bell, Search, Menu, X, Upload, BookMarked, Trash2, Eye, ArrowLeft, Truck, Construction, Home, Heart, Laptop } from "lucide-react";
-import { useState } from "react";
+import { BookOpen, Calendar, CheckCircle, Clock, FileText, GraduationCap, MessageSquare, Upload, BookMarked, Trash2, Truck, Home, Search, Bell } from "lucide-react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
@@ -47,9 +46,6 @@ interface Submission {
 }
 
 export default function StudentLandingPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [notificationCount, setNotificationCount] = useState(3);
   const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
   const [messageDialogOpen, setMessageDialogOpen] = useState(false);
   const [scheduleDialogOpen, setScheduleDialogOpen] = useState(false);
@@ -82,27 +78,8 @@ export default function StudentLandingPage() {
 
   const [messages, setMessages] = useState<{id: number, recipient: string, subject: string, sentAt: string}[]>([]);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      const courseResults = courses.filter(c => 
-        c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        c.instructor.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      const assignmentResults = assignments.filter(a => 
-        a.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        a.subject.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      toast.success(`Found ${courseResults.length} courses and ${assignmentResults.length} assignments`);
-    } else {
-      toast.error("Please enter a search term");
-    }
-  };
 
-  const handleNotificationClick = () => {
-    setNotificationCount(0);
-    toast.success("All notifications marked as read");
-  };
+
 
   const handleSubmitWork = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -205,93 +182,77 @@ export default function StudentLandingPage() {
     toast.success("File selected: assignment_document.pdf");
   };
 
-  const filteredCourses = courses.filter(course => 
-    course.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    course.instructor.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
-  const filteredAssignments = assignments.filter(assignment =>
-    assignment.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    assignment.subject.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   const pendingCount = assignments.filter(a => a.status === "pending").length;
   const completedCount = assignments.filter(a => a.status === "completed").length;
 
+  // Get user name from localStorage or default
+  const [userName, setUserName] = useState("Juan");
+  
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setUserName(user.first_name);
+    }
+  }, []);
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [notificationCount, setNotificationCount] = useState(3);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      toast.success(`Searching for: ${searchQuery}`);
+    }
+  };
+
+  const handleNotificationClick = () => {
+    setNotificationCount(0);
+    toast.success("All notifications marked as read");
+  };
+
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center gap-2">
-              <Link href="/" className="flex items-center gap-2">
-                <div className="bg-blue-600 p-2 rounded-lg">
-                  <GraduationCap className="h-6 w-6 text-white" />
-                </div>
-                <span className="text-xl font-bold text-slate-900">TClass</span>
-              </Link>
-              <Badge variant="secondary" className="hidden sm:inline-flex">Student Portal</Badge>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/student" className="text-sm font-medium text-blue-600">Dashboard</Link>
-              <Link href="/student/courses" className="text-sm font-medium text-slate-600 hover:text-slate-900">Courses</Link>
-              <Link href="/student/assignments" className="text-sm font-medium text-slate-600 hover:text-slate-900">Assignments</Link>
-              <Link href="/student/grades" className="text-sm font-medium text-slate-600 hover:text-slate-900">Grades</Link>
-              <Link href="/student/calendar" className="text-sm font-medium text-slate-600 hover:text-slate-900">Calendar</Link>
-            </nav>
-
-            {/* Right Section */}
-            <div className="flex items-center gap-4">
-              <form onSubmit={handleSearch} className="relative hidden sm:block">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <Input 
-                  placeholder="Search courses & assignments..." 
-                  className="pl-9 w-64"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </form>
-              <Button variant="ghost" size="icon" className="relative" onClick={handleNotificationClick}>
-                <Bell className="h-5 w-5" />
-                {notificationCount > 0 && (
-                  <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
-                )}
-              </Button>
-              <Avatar className="hidden sm:flex">
-                <AvatarFallback className="bg-blue-100 text-blue-700">JD</AvatarFallback>
-              </Avatar>
-              <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </Button>
-            </div>
+    <div className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
+      {/* Section Header */}
+      <section className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          {/* Left - Title */}
+          <div className="flex-shrink-0">
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900">Welcome back, {userName}!</h1>
+            <p className="text-sm text-slate-600 mt-0.5 hidden sm:block">Here&apos;s what&apos;s happening with your studies today.</p>
+          </div>
+          
+          {/* Center - Search Bar */}
+          <div className="flex-1 flex justify-center w-full sm:w-auto order-3 sm:order-2">
+            <form onSubmit={handleSearch} className="relative w-full max-w-md">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-slate-400" />
+              <Input 
+                placeholder="Search..." 
+                className="pl-10 sm:pl-11 pr-4 h-10 sm:h-11 w-full text-sm sm:text-base"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </form>
+          </div>
+          
+          {/* Right - Notification */}
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 order-2 sm:order-3 ml-auto sm:ml-0">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative h-10 w-10 touch-manipulation"
+              onClick={handleNotificationClick}
+            >
+              <Bell className="h-5 w-5 text-slate-600" />
+              {notificationCount > 0 && (
+                <span className="absolute top-1.5 right-1.5 h-2.5 w-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+              )}
+            </Button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-200 bg-white">
-            <div className="px-4 py-3 space-y-1">
-              <Link href="/student" className="block px-3 py-2 rounded-md text-base font-medium text-blue-600 bg-blue-50">Dashboard</Link>
-              <Link href="/student/courses" className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">Courses</Link>
-              <Link href="/student/assignments" className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">Assignments</Link>
-              <Link href="/student/grades" className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">Grades</Link>
-              <Link href="/student/calendar" className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-slate-50">Calendar</Link>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Welcome Section */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900">Welcome back, Juan!</h1>
-          <p className="text-slate-600 mt-1">Here&apos;s what&apos;s happening with your studies today.</p>
-        </div>
+      </section>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -364,7 +325,7 @@ export default function StudentLandingPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {(searchQuery ? filteredCourses : courses).map((course) => {
+                  {courses.map((course) => {
                     const getCourseIcon = (courseName: string) => {
                       if (courseName.includes("Dump Truck") || courseName.includes("Transit Mixer") || courseName.includes("Forklift")) {
                         return <Truck className="h-6 w-6 text-amber-600" />;
@@ -403,9 +364,7 @@ export default function StudentLandingPage() {
                       </div>
                     );
                   })}
-                  {searchQuery && filteredCourses.length === 0 && (
-                    <p className="text-center text-slate-500 py-4">No courses found matching &quot;{searchQuery}&quot;</p>
-                  )}
+                  
                 </div>
               </CardContent>
             </Card>
@@ -423,7 +382,7 @@ export default function StudentLandingPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {(searchQuery ? filteredAssignments : assignments).map((assignment) => (
+                  {assignments.map((assignment) => (
                     <div key={assignment.id} className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
                       <div className="flex items-center gap-3">
                         <div className={`p-2 rounded-lg ${assignment.status === 'completed' ? 'bg-green-100' : assignment.status === 'submitted' ? 'bg-blue-100' : 'bg-amber-100'}`}>
@@ -444,9 +403,7 @@ export default function StudentLandingPage() {
                       </div>
                     </div>
                   ))}
-                  {searchQuery && filteredAssignments.length === 0 && (
-                    <p className="text-center text-slate-500 py-4">No assignments found matching &quot;{searchQuery}&quot;</p>
-                  )}
+                  
                 </div>
               </CardContent>
             </Card>
@@ -774,7 +731,6 @@ export default function StudentLandingPage() {
             </Card>
           </div>
         </div>
-      </main>
     </div>
   );
 }
