@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/LEGION/Downloads/Tclass/t-class/app/student/layout.tsx"],"sourcesContent":["import type { Metadata } from \"next\";\r\nimport { Geist, Geist_Mono } from \"next/font/google\";\r\nimport \"../globals.css\";\r\n\r\nconst geistSans = Geist({\r\n  variable: \"--font-geist-sans\",\r\n  subsets: [\"latin\"],\r\n});\r\n\r\nconst geistMono = Geist_Mono({\r\n  variable: \"--font-geist-mono\",\r\n  subsets: [\"latin\"],\r\n});\r\n\r\nexport const metadata: Metadata = {\r\n  title: \"TClass - Student Portal\",\r\n  description: \"TClass Student Learning Management System\",\r\n};\r\n\r\nexport default function StudentLayout({\r\n  children,\r\n}: Readonly<{\r\n  children: React.ReactNode;\r\n}>) {\r\n  return (\r\n    <div className={`${geistSans.variable} ${geistMono.variable} antialiased`}>\r\n      {children}\r\n    </div>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;;;;;;;;;;AAcO,MAAM,WAAqB;IAChC,OAAO;IACP,aAAa;AACf;AAEe,SAAS,cAAc,EACpC,QAAQ,EAGR;IACA,qBACE,8OAAC;QAAI,WAAW,GAAG,oJAAS,CAAC,QAAQ,CAAC,CAAC,EAAE,yJAAS,CAAC,QAAQ,CAAC,YAAY,CAAC;kBACtE;;;;;;AAGP"}}]
-}
