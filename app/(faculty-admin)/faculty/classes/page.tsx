@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { BookOpen, GraduationCap, Bell, Users, ArrowLeft, Plus, Search, MoreVertical, Edit, Trash2 } from "lucide-react";
+import { BookOpen, Users, ArrowLeft, Plus, Search, Edit, Trash2 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import toast from "react-hot-toast";
@@ -101,54 +101,24 @@ export default function FacultyClassesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <div className="bg-indigo-600 p-2 rounded-lg">
-                <GraduationCap className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-xl font-bold text-slate-900">TClass</span>
-              <Badge className="hidden sm:inline-flex bg-indigo-100 text-indigo-700">Faculty Portal</Badge>
-            </div>
-
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/faculty" className="text-sm font-medium text-slate-600 hover:text-slate-900">Dashboard</Link>
-              <Link href="/faculty/classes" className="text-sm font-medium text-indigo-600">My Classes</Link>
-              <Link href="/faculty/students" className="text-sm font-medium text-slate-600 hover:text-slate-900">Students</Link>
-              <Link href="/faculty/assignments" className="text-sm font-medium text-slate-600 hover:text-slate-900">Assignments</Link>
-              <Link href="/faculty/grades" className="text-sm font-medium text-slate-600 hover:text-slate-900">Grades</Link>
-            </nav>
-
-            <div className="flex items-center gap-4">
-              <div className="relative hidden sm:block">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <Input 
-                  placeholder="Search classes..." 
-                  className="pl-9 w-48"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-              <Button variant="ghost" size="icon" onClick={() => toast.success("No new notifications")}>
-                <Bell className="h-5 w-5" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto">
         <div className="mb-6">
-          <Link href="/faculty" className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-4">
-            <ArrowLeft className="h-4 w-4 mr-1" />
-            Back to Dashboard
-          </Link>
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-3xl font-bold text-slate-900">My Classes</h1>
-              <p className="text-slate-600 mt-1">Manage your teaching classes.</p>
+          <h1 className="text-2xl font-bold text-slate-900">My Classes</h1>
+          <p className="text-slate-600 mt-1">Manage your teaching classes.</p>
+        </div>
+
+        <main>
+        <div className="mb-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div className="relative w-full sm:w-auto">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <Input 
+                placeholder="Search classes..." 
+                className="pl-9 w-full sm:w-64"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
             </div>
             <Dialog open={newClassDialogOpen} onOpenChange={setNewClassDialogOpen}>
               <DialogTrigger asChild>
@@ -310,5 +280,6 @@ export default function FacultyClassesPage() {
         </DialogContent>
       </Dialog>
     </div>
+  </div>
   );
 }

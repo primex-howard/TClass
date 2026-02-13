@@ -1,4 +1,260 @@
-[00:00:01.241] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:01.245] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
-[00:00:01.444] Server  LOG     ✓ Ready in 1070ms
-[00:00:07.462] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:03.056] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:03.064] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:00:03.372] Server  LOG     ✓ Ready in 2.9s
+[00:00:10.092] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:10.327] Browser WARN    Image with src "http://localhost:3001/tclass.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:00:11.138] Browser LOG     Using local programs data
+[00:02:07.273] Server  LOG     ✓ Compiled in 8.6s
+[00:05:30.844] Server  LOG     ✓ Compiled in 3.1s
+[00:07:11.434] Server  LOG     ○ Compiling /student ...
+[00:07:11.894] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:39.290] Browser WARN    Image with src "http://localhost:3001/tclass.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:07:39.736] Browser LOG     Programs loaded from API: [{"category":"heavy-equipment","description":"School Based Training - Heavy Equipment Operation under TCLASS scholarship with minimal fee of PISO per hour.","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"],"special":["Driver's license Original and Photocopy","Must bring the original documents for verification","Must be capable of operating a 4 wheeled vehicle"]},"duration":"3 months","icon":{},"id":1,"image":"/programs/dump-truck.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"TCLASS Scholarship","slots":"Limited slots available","title":"Rigid Highway Dump Truck NCII"},{"category":"heavy-equipment","description":"School Based Training - Heavy Equipment Operation under TCLASS scholarship with minimal fee of PISO per hour.","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"],"special":["Driver's license Original and Photocopy","Must bring the original documents for verification","Must be capable of operating a 4 wheeled vehicle"]},"duration":"3 months","icon":{},"id":2,"image":"/programs/transit-mixer.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"TCLASS Scholarship","slots":"Now accepting applicants","title":"Transit Mixer NCII"},{"category":"heavy-equipment","description":"School Based Training - Heavy Equipment Operator under maYAP Scholarship with minimal fee of PISO per hour.","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"],"special":["Driver's license Original and Photocopy","Must bring the original documents for verification"]},"duration":"2 months","icon":{},"id":3,"image":"/programs/forklift.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"maYAP Scholarship","slots":"Open for enrollment","title":"Forklift NCII"},{"category":"ict","description":"3 Year Diploma in Information and Communication Technology","docRequirements":{"general":["Valid ID / Recent School ID","PSA Birth Certificate","SF9 / Report Card","Certificate of Good Moral Conduct"]},"duration":"3 years","icon":{},"id":4,"image":"/programs/ict.jpg","instructor":"TBD","price":null,"qualifications":["18 YEARS OLD AND ABOVE","GRADUATE OF SENIOR HIGH SCHOOL / ALS / OLD CURRICULUM","MUST MEET THE INTERVIEW REQUIREMENTS"],"requirements":["18 YEARS OLD AND ABOVE","GRADUATE OF SENIOR HIGH SCHOOL / ALS / OLD CURRICULUM","MUST MEET THE INTERVIEW REQUIREMENTS"],"room":"TBD","schedule":"TBD","scholarship":"TCLASS Program","slots":"5 SLOTS LEFT!","title":"3-Year Diploma in ICT"},{"category":"services","description":"School Based Training under maYAP Scholarship with minimal fee of PISO per hour","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"]},"duration":"2 months","icon":{},"id":5,"image":"/programs/housekeeping.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"maYAP Scholarship","slots":"Now open","title":"Housekeeping NCII"},{"category":"services","description":"School Based Training under maYAP Scholarship with minimal fee of PISO per hour","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"]},"duration":"6 months","icon":{},"id":6,"image":"/programs/healthcare.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"maYAP Scholarship","slots":"Limited slots","title":"Health Care Services NCII"}]
+[00:07:40.463] Browser LOG     Programs loaded from API: [{"category":"heavy-equipment","description":"School Based Training - Heavy Equipment Operation under TCLASS scholarship with minimal fee of PISO per hour.","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"],"special":["Driver's license Original and Photocopy","Must bring the original documents for verification","Must be capable of operating a 4 wheeled vehicle"]},"duration":"3 months","icon":{},"id":1,"image":"/programs/dump-truck.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"TCLASS Scholarship","slots":"Limited slots available","title":"Rigid Highway Dump Truck NCII"},{"category":"heavy-equipment","description":"School Based Training - Heavy Equipment Operation under TCLASS scholarship with minimal fee of PISO per hour.","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"],"special":["Driver's license Original and Photocopy","Must bring the original documents for verification","Must be capable of operating a 4 wheeled vehicle"]},"duration":"3 months","icon":{},"id":2,"image":"/programs/transit-mixer.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"TCLASS Scholarship","slots":"Now accepting applicants","title":"Transit Mixer NCII"},{"category":"heavy-equipment","description":"School Based Training - Heavy Equipment Operator under maYAP Scholarship with minimal fee of PISO per hour.","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"],"special":["Driver's license Original and Photocopy","Must bring the original documents for verification"]},"duration":"2 months","icon":{},"id":3,"image":"/programs/forklift.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"maYAP Scholarship","slots":"Open for enrollment","title":"Forklift NCII"},{"category":"ict","description":"3 Year Diploma in Information and Communication Technology","docRequirements":{"general":["Valid ID / Recent School ID","PSA Birth Certificate","SF9 / Report Card","Certificate of Good Moral Conduct"]},"duration":"3 years","icon":{},"id":4,"image":"/programs/ict.jpg","instructor":"TBD","price":null,"qualifications":["18 YEARS OLD AND ABOVE","GRADUATE OF SENIOR HIGH SCHOOL / ALS / OLD CURRICULUM","MUST MEET THE INTERVIEW REQUIREMENTS"],"requirements":["18 YEARS OLD AND ABOVE","GRADUATE OF SENIOR HIGH SCHOOL / ALS / OLD CURRICULUM","MUST MEET THE INTERVIEW REQUIREMENTS"],"room":"TBD","schedule":"TBD","scholarship":"TCLASS Program","slots":"5 SLOTS LEFT!","title":"3-Year Diploma in ICT"},{"category":"services","description":"School Based Training under maYAP Scholarship with minimal fee of PISO per hour","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"]},"duration":"2 months","icon":{},"id":5,"image":"/programs/housekeeping.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"maYAP Scholarship","slots":"Now open","title":"Housekeeping NCII"},{"category":"services","description":"School Based Training under maYAP Scholarship with minimal fee of PISO per hour","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"]},"duration":"6 months","icon":{},"id":6,"image":"/programs/healthcare.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"maYAP Scholarship","slots":"Limited slots","title":"Health Care Services NCII"}]
+[00:10:09.309] Server  LOG     ✓ Compiled in 3.2s
+[00:11:13.592] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:11:18.077] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:11:22.636] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:11:25.414] Server  LOG     ✓ Compiled in 2.8s
+[00:11:35.429] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:12:11.065] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:12:13.861] Server  LOG     ✓ Compiled in 2.7s
+[00:12:14.908] Browser ERROR   ./app/student/page.tsx:722:5
+Parsing ecmascript source code failed
+  720 |         </div>
+  721 |       </main>
+> 722 |     </div>
+      |     ^
+  723 |   );
+  724 | }
+  725 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/student/page.tsx [Client Component Browser]
+    ./app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/student/page.tsx [Client Component SSR]
+    ./app/student/page.tsx [Server Component]
+[00:12:14.908] Browser ERROR   ./app/student/page.tsx:722:6
+Parsing ecmascript source code failed
+  720 |         </div>
+  721 |       </main>
+> 722 |     </div>
+      |      ^^^^^
+  723 |   );
+  724 | }
+  725 |
+
+Unterminated regexp literal
+
+Import traces:
+  Client Component Browser:
+    ./app/student/page.tsx [Client Component Browser]
+    ./app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/student/page.tsx [Client Component SSR]
+    ./app/student/page.tsx [Server Component]
+[00:12:30.151] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:13:27.029] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:13:30.907] Server  LOG     ✓ Compiled in 3.8s
+[00:14:32.509] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:14:53.800] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:15:15.292] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:18:35.469] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:18:38.836] Server  LOG     ✓ Compiled in 3.3s
+[00:18:54.469] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:19:21.383] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:19:31.752] Server  LOG     ✓ Compiled in 10.3s
+[00:26:33.705] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:29:13.624] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:29:16.387] Server  LOG     ✓ Compiled in 2.7s
+[00:29:21.418] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:29:25.047] Server  LOG     ✓ Compiled in 3.6s
+[00:29:59.733] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:30:02.279] Server  LOG     ✓ Compiled in 2.5s
+[00:36:25.319] Server  LOG     ✓ Compiled in 2.8s
+[00:36:25.482] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:36:46.054] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:36:48.902] Server  LOG     ✓ Compiled in 2.8s
+[00:37:05.279] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:37:07.965] Server  LOG     ✓ Compiled in 2.6s
+[00:37:28.626] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:37:31.268] Server  LOG     ✓ Compiled in 2.6s
+[00:37:31.909] Browser ERROR   uncaughtError: ReferenceError: searchQuery is not defined
+[00:37:49.290] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:37:51.925] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:37:52.158] Server  LOG     ✓ Compiled in 2.6s
+[00:37:52.313] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:41:15.188] Server  LOG     ✓ Compiled in 2.8s
+[00:41:15.355] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:41:30.036] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:43:28.745] Browser WARN    Image with src "http://localhost:3001/tclass.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:43:29.799] Browser LOG     Programs loaded from API: [{"category":"heavy-equipment","description":"School Based Training - Heavy Equipment Operation under TCLASS scholarship with minimal fee of PISO per hour.","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"],"special":["Driver's license Original and Photocopy","Must bring the original documents for verification","Must be capable of operating a 4 wheeled vehicle"]},"duration":"3 months","icon":{},"id":1,"image":"/programs/dump-truck.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"TCLASS Scholarship","slots":"Limited slots available","title":"Rigid Highway Dump Truck NCII"},{"category":"heavy-equipment","description":"School Based Training - Heavy Equipment Operation under TCLASS scholarship with minimal fee of PISO per hour.","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"],"special":["Driver's license Original and Photocopy","Must bring the original documents for verification","Must be capable of operating a 4 wheeled vehicle"]},"duration":"3 months","icon":{},"id":2,"image":"/programs/transit-mixer.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"TCLASS Scholarship","slots":"Now accepting applicants","title":"Transit Mixer NCII"},{"category":"heavy-equipment","description":"School Based Training - Heavy Equipment Operator under maYAP Scholarship with minimal fee of PISO per hour.","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"],"special":["Driver's license Original and Photocopy","Must bring the original documents for verification"]},"duration":"2 months","icon":{},"id":3,"image":"/programs/forklift.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"maYAP Scholarship","slots":"Open for enrollment","title":"Forklift NCII"},{"category":"ict","description":"3 Year Diploma in Information and Communication Technology","docRequirements":{"general":["Valid ID / Recent School ID","PSA Birth Certificate","SF9 / Report Card","Certificate of Good Moral Conduct"]},"duration":"3 years","icon":{},"id":4,"image":"/programs/ict.jpg","instructor":"TBD","price":null,"qualifications":["18 YEARS OLD AND ABOVE","GRADUATE OF SENIOR HIGH SCHOOL / ALS / OLD CURRICULUM","MUST MEET THE INTERVIEW REQUIREMENTS"],"requirements":["18 YEARS OLD AND ABOVE","GRADUATE OF SENIOR HIGH SCHOOL / ALS / OLD CURRICULUM","MUST MEET THE INTERVIEW REQUIREMENTS"],"room":"TBD","schedule":"TBD","scholarship":"TCLASS Program","slots":"5 SLOTS LEFT!","title":"3-Year Diploma in ICT"},{"category":"services","description":"School Based Training under maYAP Scholarship with minimal fee of PISO per hour","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"]},"duration":"2 months","icon":{},"id":5,"image":"/programs/housekeeping.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"maYAP Scholarship","slots":"Now open","title":"Housekeeping NCII"},{"category":"services","description":"School Based Training under maYAP Scholarship with minimal fee of PISO per hour","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"]},"duration":"6 months","icon":{},"id":6,"image":"/programs/healthcare.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"maYAP Scholarship","slots":"Limited slots","title":"Health Care Services NCII"}]
+[00:43:30.078] Browser LOG     Programs loaded from API: [{"category":"heavy-equipment","description":"School Based Training - Heavy Equipment Operation under TCLASS scholarship with minimal fee of PISO per hour.","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"],"special":["Driver's license Original and Photocopy","Must bring the original documents for verification","Must be capable of operating a 4 wheeled vehicle"]},"duration":"3 months","icon":{},"id":1,"image":"/programs/dump-truck.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"TCLASS Scholarship","slots":"Limited slots available","title":"Rigid Highway Dump Truck NCII"},{"category":"heavy-equipment","description":"School Based Training - Heavy Equipment Operation under TCLASS scholarship with minimal fee of PISO per hour.","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"],"special":["Driver's license Original and Photocopy","Must bring the original documents for verification","Must be capable of operating a 4 wheeled vehicle"]},"duration":"3 months","icon":{},"id":2,"image":"/programs/transit-mixer.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"TCLASS Scholarship","slots":"Now accepting applicants","title":"Transit Mixer NCII"},{"category":"heavy-equipment","description":"School Based Training - Heavy Equipment Operator under maYAP Scholarship with minimal fee of PISO per hour.","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"],"special":["Driver's license Original and Photocopy","Must bring the original documents for verification"]},"duration":"2 months","icon":{},"id":3,"image":"/programs/forklift.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"maYAP Scholarship","slots":"Open for enrollment","title":"Forklift NCII"},{"category":"ict","description":"3 Year Diploma in Information and Communication Technology","docRequirements":{"general":["Valid ID / Recent School ID","PSA Birth Certificate","SF9 / Report Card","Certificate of Good Moral Conduct"]},"duration":"3 years","icon":{},"id":4,"image":"/programs/ict.jpg","instructor":"TBD","price":null,"qualifications":["18 YEARS OLD AND ABOVE","GRADUATE OF SENIOR HIGH SCHOOL / ALS / OLD CURRICULUM","MUST MEET THE INTERVIEW REQUIREMENTS"],"requirements":["18 YEARS OLD AND ABOVE","GRADUATE OF SENIOR HIGH SCHOOL / ALS / OLD CURRICULUM","MUST MEET THE INTERVIEW REQUIREMENTS"],"room":"TBD","schedule":"TBD","scholarship":"TCLASS Program","slots":"5 SLOTS LEFT!","title":"3-Year Diploma in ICT"},{"category":"services","description":"School Based Training under maYAP Scholarship with minimal fee of PISO per hour","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"]},"duration":"2 months","icon":{},"id":5,"image":"/programs/housekeeping.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"maYAP Scholarship","slots":"Now open","title":"Housekeeping NCII"},{"category":"services","description":"School Based Training under maYAP Scholarship with minimal fee of PISO per hour","docRequirements":{"educational":{"als":["ALS Certificate"],"college":["Photocopy of Diploma","Photocopy of Certified True Copy of Transcript of Records","National Certificates (If applicable)"],"highSchool":["Photocopy of Diploma","Photocopy of Certified True Copy of Form 138 or Form 137 or Form 9"]},"general":["PSA Birth Certificate (Photocopy)","PSA Marriage Certificate (For female married students)","Picture in White background and with collar (Studio Shot) - 3 pcs passport size, 4 pcs 1x1","Original Brgy. Indigency","Original Medical Certificate","Voter's ID / Certification or any government issued ID with address (Photocopy)","Long envelope with clear plastic envelope"]},"duration":"6 months","icon":{},"id":6,"image":"/programs/healthcare.jpg","instructor":"TBD","price":null,"qualifications":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"requirements":["At least Highschool or SHS Graduate/ALS Passer/College Level or Graduate","18 years old and above","Physically and Mentally Fit","Can comply to all requirements needed"],"room":"TBD","schedule":"TBD","scholarship":"maYAP Scholarship","slots":"Limited slots","title":"Health Care Services NCII"}]
+[00:45:20.303] Server  LOG     ✓ Compiled in 4s
+[00:45:20.565] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:45:31.986] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:45:33.221] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:47:39.588] Server  LOG     ✓ Compiled in 2.7s
+[00:47:39.894] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:48:34.688] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:48:53.427] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:48:56.918] Browser ERROR   ./app/student/page.tsx:13:10
+Ecmascript file had an error
+  11 | import { BookOpen, Calendar, CheckCircle, Clock, FileText, GraduationCap, MessageSquare, Upload, BookMarked, Trash2, Truck, Home, Search, Bell } from "lucide-react";
+  12 | import { Input } from "@/components/ui/input";
+> 13 | import { Button } from "@/components/ui/button";
+     |          ^^^^^^
+  14 | import { useState, useEffect } from "react";
+  15 | import Link from "next/link";
+  16 | import toast from "react-hot-toast";
+
+the name `Button` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/student/page.tsx [Client Component Browser]
+    ./app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/student/page.tsx [Client Component SSR]
+    ./app/student/page.tsx [Server Component]
+[00:48:56.918] Browser ERROR   ./app/student/page.tsx:12:10
+Ecmascript file had an error
+  10 | import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+  11 | import { BookOpen, Calendar, CheckCircle, Clock, FileText, GraduationCap, MessageSquare, Upload, BookMarked, Trash2, Truck, Home, Search, Bell } from "lucide-react";
+> 12 | import { Input } from "@/components/ui/input";
+     |          ^^^^^
+  13 | import { Button } from "@/components/ui/button";
+  14 | import { useState, useEffect } from "react";
+  15 | import Link from "next/link";
+
+the name `Input` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/student/page.tsx [Client Component Browser]
+    ./app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/student/page.tsx [Client Component SSR]
+    ./app/student/page.tsx [Server Component]
+[00:49:25.724] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:49:28.435] Server  LOG     ✓ Compiled in 2.7s
+[00:49:45.271] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[01:02:23.710] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:44.111] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:45.582] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:46.498] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:47.405] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:47.970] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:49.046] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:49.978] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:51.674] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:52.326] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:53.398] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:05:50.704] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:05:54.748] Server  LOG     ✓ Compiled in 4s
+[01:05:58.908] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:06:44.713] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:07:07.597] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:07:10.338] Server  LOG     ✓ Compiled in 2.7s
+[01:08:26.211] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[01:08:29.545] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:08:35.355] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:08:42.097] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:08:46.365] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:08:52.593] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:08:58.092] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:09:04.908] Server  ERROR   ⨯ ./app/(faculty-admin)/faculty/page.tsx:1278:1
+Parsing ecmascript source code failed
+  1276 |   );
+  1277 | }
+> 1278 | 
+       | ^
+
+Unterminated block comment
+
+
+[01:09:05.038] Browser ERROR   ./app/(faculty-admin)/faculty/page.tsx:1278:1
+Parsing ecmascript source code failed
+  1276 |   );
+  1277 | }
+> 1278 | 
+       | ^
+
+Unterminated block comment
+[01:09:05.977] Browser ERROR   ./app/(faculty-admin)/faculty/page.tsx:1278:1
+Parsing ecmascript source code failed
+  1276 |   );
+  1277 | }
+> 1278 | 
+       | ^
+
+Unterminated block comment
+[01:09:06.179] Browser ERROR   ./app/(faculty-admin)/faculty/page.tsx:1278:1
+Parsing ecmascript source code failed
+  1276 |   );
+  1277 | }
+> 1278 | 
+       | ^
+
+Unterminated block comment
+[01:09:07.643] Browser ERROR   uncaughtError: Error: ./app/(faculty-admin)/faculty/page.tsx:1278:1
+Parsing ecmascript source code failed
+  1276 |   );
+  1277 | }
+> 1278 | 
+       | ^
+
+Unterminated block comment
+
+
+[01:09:07.837] Browser ERROR   ./app/(faculty-admin)/faculty/page.tsx:1278:1
+Parsing ecmascript source code failed
+  1276 |   );
+  1277 | }
+> 1278 | 
+       | ^
+
+Unterminated block comment
+[01:09:07.837] Browser ERROR   ./app/(faculty-admin)/faculty/page.tsx:1278:1
+Parsing ecmascript source code failed
+  1276 |   );
+  1277 | }
+> 1278 | 
+       | ^
+
+Unterminated block comment
+[01:09:16.755] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:09:20.908] Browser ERROR   ./app/(faculty-admin)/faculty/page.tsx:1278:1
+Parsing ecmascript source code failed
+  1276 |   );
+  1277 | }
+> 1278 | 
+       | ^
+
+Unterminated block comment
+[01:09:36.919] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:09:39.919] Browser ERROR   ./app/(faculty-admin)/faculty/page.tsx:1278:1
+Parsing ecmascript source code failed
+  1276 |   );
+  1277 | }
+> 1278 | 
+       | ^
+
+Unterminated block comment
+[01:09:53.470] Server  ERROR   ⨯ Middleware cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[01:09:56.921] Browser ERROR   ./app/(faculty-admin)/faculty/page.tsx:1278:1
+Parsing ecmascript source code failed
+  1276 |   );
+  1277 | }
+> 1278 | 
+       | ^
+
+Unterminated block comment

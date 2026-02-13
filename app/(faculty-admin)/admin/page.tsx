@@ -62,7 +62,7 @@ import {
   Trash2,
   Edit
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 // Types
@@ -278,13 +278,57 @@ export default function AdminDashboard() {
 
   const unreadCount = notifications.filter(n => !n.read).length;
 
+  // Get user info
+  const [userName, setUserName] = useState("Admin");
+  
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setUserName(`${user.first_name} ${user.last_name}`);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
-        {/* Welcome Section */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900">Admin Dashboard</h1>
-          <p className="text-slate-600 mt-1">Overview of school operations and management.</p>
+      {/* Section Header */}
+      <section className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          {/* Left - Title */}
+          <div className="flex-shrink-0">
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900">Welcome back, {userName}!</h1>
+            <p className="text-sm text-slate-600 mt-0.5 hidden sm:block">Overview of school operations and management.</p>
+          </div>
+          
+          {/* Center - Search Bar */}
+          <div className="flex-1 flex justify-center w-full sm:w-auto order-3 sm:order-2">
+            <form onSubmit={(e) => { e.preventDefault(); toast.success(`Searching for: ${searchQuery}`); }} className="relative w-full max-w-md">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-slate-400" />
+              <Input 
+                placeholder="Search users, departments..." 
+                className="pl-10 sm:pl-11 pr-4 h-10 sm:h-11 w-full text-sm sm:text-base"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </form>
+          </div>
+          
+          {/* Right - Notification */}
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 order-2 sm:order-3 ml-auto sm:ml-0">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative h-10 w-10 touch-manipulation"
+              onClick={() => { setShowNotifications(!showNotifications); }}
+            >
+              <Bell className="h-5 w-5 text-slate-600" />
+              {unreadCount > 0 && (
+                <span className="absolute top-1.5 right-1.5 h-2.5 w-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+              )}
+            </Button>
+          </div>
         </div>
+      </section>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-8">

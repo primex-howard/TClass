@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { GraduationCap, Bell, Users, ArrowLeft, Search, Mail, FileText, Edit, Trash2 } from "lucide-react";
+import { Users, ArrowLeft, Search, Mail, FileText, Edit, Trash2 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import toast from "react-hot-toast";
@@ -106,105 +106,80 @@ export default function FacultyStudentsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <div className="bg-indigo-600 p-2 rounded-lg">
-                <GraduationCap className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-xl font-bold text-slate-900">TClass</span>
-              <Badge className="hidden sm:inline-flex bg-indigo-100 text-indigo-700">Faculty Portal</Badge>
-            </div>
+    <div className="p-4 sm:p-6 lg:p-8">
+      {/* Page Title Section */}
+      <div className="mb-6">
+        <Link href="/faculty" className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-4">
+          <ArrowLeft className="h-4 w-4 mr-1" />
+          Back to Dashboard
+        </Link>
+        <h1 className="text-3xl font-bold text-slate-900">My Students</h1>
+        <p className="text-slate-600 mt-1">View and manage your students. ({filteredStudents.length} students)</p>
+      </div>
 
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/faculty" className="text-sm font-medium text-slate-600 hover:text-slate-900">Dashboard</Link>
-              <Link href="/faculty/classes" className="text-sm font-medium text-slate-600 hover:text-slate-900">My Classes</Link>
-              <Link href="/faculty/students" className="text-sm font-medium text-indigo-600">Students</Link>
-              <Link href="/faculty/assignments" className="text-sm font-medium text-slate-600 hover:text-slate-900">Assignments</Link>
-              <Link href="/faculty/grades" className="text-sm font-medium text-slate-600 hover:text-slate-900">Grades</Link>
-            </nav>
+      {/* Search Bar */}
+      <div className="mb-6">
+        <div className="relative max-w-md">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+          <Input 
+            placeholder="Search students..." 
+            className="pl-9"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+      </div>
 
-            <div className="flex items-center gap-4">
-              <div className="relative hidden sm:block">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <Input 
-                  placeholder="Search students..." 
-                  className="pl-9 w-48"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
+      <Card>
+        <CardHeader>
+          <CardTitle>Student List</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {filteredStudents.map((student) => (
+              <div key={student.id} className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
+                <div className="flex items-center gap-4">
+                  <Avatar className="h-10 w-10">
+                    <AvatarFallback className="bg-indigo-100 text-indigo-700">
+                      {student.name.split(' ').map(n => n[0]).join('')}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h3 className="font-semibold text-slate-900">{student.name}</h3>
+                    <p className="text-sm text-slate-600">{student.email} • {student.class}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="text-right">
+                    <Badge className="mb-1">Grade: {student.grade}</Badge>
+                    <p className="text-xs text-slate-500">Attendance: {student.attendance}</p>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="icon" onClick={() => openEmailDialog(student)} title="Send Email">
+                      <Mail className="h-4 w-4" />
+                    </Button>
+                    <Button variant="outline" size="icon" onClick={() => openRecordsDialog(student)} title="View Records">
+                      <FileText className="h-4 w-4" />
+                    </Button>
+                    <Button variant="outline" size="icon" onClick={() => openEditDialog(student)} title="Edit Student">
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button variant="outline" size="icon" className="text-red-500 hover:text-red-600" onClick={() => openDeleteDialog(student)} title="Remove Student">
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
               </div>
-              <Button variant="ghost" size="icon" onClick={() => toast.success("No new notifications")}>
-                <Bell className="h-5 w-5" />
-              </Button>
-            </div>
+            ))}
+            {filteredStudents.length === 0 && (
+              <div className="text-center py-8">
+                <Users className="h-12 w-12 text-slate-300 mx-auto mb-4" />
+                <p className="text-slate-500">No students found matching &quot;{searchQuery}&quot;</p>
+              </div>
+            )}
           </div>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-6">
-          <Link href="/faculty" className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-4">
-            <ArrowLeft className="h-4 w-4 mr-1" />
-            Back to Dashboard
-          </Link>
-          <h1 className="text-3xl font-bold text-slate-900">My Students</h1>
-          <p className="text-slate-600 mt-1">View and manage your students. ({filteredStudents.length} students)</p>
-        </div>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Student List</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {filteredStudents.map((student) => (
-                <div key={student.id} className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
-                  <div className="flex items-center gap-4">
-                    <Avatar className="h-10 w-10">
-                      <AvatarFallback className="bg-indigo-100 text-indigo-700">
-                        {student.name.split(' ').map(n => n[0]).join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <h3 className="font-semibold text-slate-900">{student.name}</h3>
-                      <p className="text-sm text-slate-600">{student.email} • {student.class}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="text-right">
-                      <Badge className="mb-1">Grade: {student.grade}</Badge>
-                      <p className="text-xs text-slate-500">Attendance: {student.attendance}</p>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="icon" onClick={() => openEmailDialog(student)} title="Send Email">
-                        <Mail className="h-4 w-4" />
-                      </Button>
-                      <Button variant="outline" size="icon" onClick={() => openRecordsDialog(student)} title="View Records">
-                        <FileText className="h-4 w-4" />
-                      </Button>
-                      <Button variant="outline" size="icon" onClick={() => openEditDialog(student)} title="Edit Student">
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button variant="outline" size="icon" className="text-red-500 hover:text-red-600" onClick={() => openDeleteDialog(student)} title="Remove Student">
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {filteredStudents.length === 0 && (
-                <div className="text-center py-8">
-                  <Users className="h-12 w-12 text-slate-300 mx-auto mb-4" />
-                  <p className="text-slate-500">No students found matching &quot;{searchQuery}&quot;</p>
-                </div>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-      </main>
+        </CardContent>
+      </Card>
 
       {/* Email Dialog */}
       <Dialog open={emailDialogOpen} onOpenChange={setEmailDialogOpen}>

@@ -132,58 +132,30 @@ export default function FacultyGradesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <div className="bg-indigo-600 p-2 rounded-lg">
-                <GraduationCap className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-xl font-bold text-slate-900">TClass</span>
-              <Badge className="hidden sm:inline-flex bg-indigo-100 text-indigo-700">Faculty Portal</Badge>
-            </div>
-
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/faculty" className="text-sm font-medium text-slate-600 hover:text-slate-900">Dashboard</Link>
-              <Link href="/faculty/classes" className="text-sm font-medium text-slate-600 hover:text-slate-900">My Classes</Link>
-              <Link href="/faculty/students" className="text-sm font-medium text-slate-600 hover:text-slate-900">Students</Link>
-              <Link href="/faculty/assignments" className="text-sm font-medium text-slate-600 hover:text-slate-900">Assignments</Link>
-              <Link href="/faculty/grades" className="text-sm font-medium text-indigo-600">Grades</Link>
-            </nav>
-
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon" onClick={() => toast.success("No new notifications")}>
-                <Bell className="h-5 w-5" />
-              </Button>
-            </div>
+    <div className="p-4 sm:p-6 lg:p-8">
+      {/* Page Header */}
+      <div className="mb-6">
+        <Link href="/faculty" className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-4">
+          <ArrowLeft className="h-4 w-4 mr-1" />
+          Back to Dashboard
+        </Link>
+        <div className="flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-slate-900">Grades</h1>
+            <p className="text-slate-600 mt-1">View and manage student grades.</p>
+          </div>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={handleExportCSV}>
+              <Download className="h-4 w-4 mr-2" />
+              Export
+            </Button>
+            <Button onClick={openGradebook}>
+              <FileSpreadsheet className="h-4 w-4 mr-2" />
+              Gradebook
+            </Button>
           </div>
         </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-6">
-          <Link href="/faculty" className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-4">
-            <ArrowLeft className="h-4 w-4 mr-1" />
-            Back to Dashboard
-          </Link>
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-3xl font-bold text-slate-900">Grades</h1>
-              <p className="text-slate-600 mt-1">View and manage student grades.</p>
-            </div>
-            <div className="flex gap-2">
-              <Button variant="outline" onClick={handleExportCSV}>
-                <Download className="h-4 w-4 mr-2" />
-                Export
-              </Button>
-              <Button onClick={openGradebook}>
-                <FileSpreadsheet className="h-4 w-4 mr-2" />
-                Gradebook
-              </Button>
-            </div>
-          </div>
-        </div>
+      </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <Card>
@@ -322,7 +294,6 @@ export default function FacultyGradesPage() {
             </div>
           </CardContent>
         </Card>
-      </main>
 
       {/* Edit Grade Dialog */}
       <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
@@ -396,6 +367,5 @@ export default function FacultyGradesPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
   );
 }
